@@ -125,14 +125,11 @@
       return {
         bigLineChart: {
           allData: [
-            [5, 0, 5, 0, 5, 5, 5, 5, 5, 5, 5, 0],
-            [5, 0, 5, 0, 5, 5, 5, 5, 5, 5, 5, 0],
-            [5, 0, 5, 0, 5, 5, 5, 5, 5, 5, 5, 0]
           ],
           activeIndex: 0,
           chartData: {
             datasets: [{ }],
-            labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+            labels: [],
           },
           extraOptions: chartConfigs.purpleChartOptions,
           gradientColors: config.colors.primaryGradient,
@@ -142,7 +139,7 @@
         purpleLineChart: {
           extraOptions: chartConfigs.purpleChartOptions,
           chartData: {
-            labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+            labels: [],
             datasets: [{
               label: "Data",
               fill: true,
@@ -272,10 +269,13 @@
               pointHoverRadius: 4,
               pointHoverBorderWidth: 15,
               pointRadius: 4,
-              data: secondResponse.data[index]
+              data: secondResponse.data[index],
             }],
             labels: firstResponse.data
           }
+
+          bigLineChart.extraOptions.scales.yAxes[0].ticks.suggestedMin = 5;
+          bigLineChart.extraOptions.scales.yAxes[0].ticks.suggestedMax = 10;
           bigLineChart.chartData = chartData;
           bigLineChart.activeIndex = index;
           refs.bigChart.updateGradients(chartData);
