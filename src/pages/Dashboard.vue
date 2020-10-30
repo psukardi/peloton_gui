@@ -168,7 +168,7 @@
           chartData: {
             labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV'],
             datasets: [{
-              label: "My First dataset",
+              label: "My Avg Heart Rate",
               fill: true,
               borderColor: config.colors.danger,
               borderWidth: 2,
