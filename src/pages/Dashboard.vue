@@ -227,7 +227,7 @@
 
           let chartData = {
             datasets: [{
-              label: "My First dataset",
+              label: "My Avg Heart Rate",
               fill: true,
               borderColor: config.colors.danger,
               borderWidth: 2,
