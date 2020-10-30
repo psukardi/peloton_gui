@@ -76,13 +76,14 @@
           </div>
         </card>
       </div> -->
-      <!-- <div class="col-12">
+      <div class="col-12">
         <card type="chart">
           <template slot="header">
             <h5 class="card-category">{{$t('dashboard.heartRate')}}</h5>
           </template>
           <div class="chart-area">
             <line-chart style="height: 100%"
+                        ref="heartChart"
                         chart-id="green-line-chart"
                         :chart-data="greenLineChart.chartData"
                         :gradient-stops="greenLineChart.gradientStops"
@@ -90,7 +91,7 @@
             </line-chart>
           </div>
         </card>
-      </div> -->
+      </div>
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -180,7 +181,7 @@
               pointHoverRadius: 4,
               pointHoverBorderWidth: 15,
               pointRadius: 4,
-              data: [90, 27, 60, 12, 80],
+              data: [0, 50, 100, 150, 200],
             }]
           },
           gradientColors: ['rgba(66,134,121,0.15)', 'rgba(66,134,121,0.0)', 'rgba(66,134,121,0)'],
@@ -217,6 +218,39 @@
       }
     },
     methods: {
+      initHeartChart() {
+        async function asyncFunc(refs, greenLineChart) {
+          const [firstResponse, secondResponse] = await Promise.all([
+            axios.get('http://54.90.15.230:5000/get_labels'),
+            axios.get('http://54.90.15.230:5000/get_heart_rate')
+          ]);
+
+          let chartData = {
+            datasets: [{
+              label: "My First dataset",
+              fill: true,
+              borderColor: config.colors.danger,
+              borderWidth: 2,
+              borderDash: [],
+              borderDashOffset: 0.0,
+              pointBackgroundColor: config.colors.danger,
+              pointBorderColor: 'rgba(255,255,255,0)',
+              pointHoverBackgroundColor: config.colors.danger,
+              pointBorderWidth: 20,
+              pointHoverRadius: 4,
+              pointHoverBorderWidth: 15,
+              pointRadius: 4,
+              data: secondResponse.data
+            }],
+            labels: firstResponse.data
+          }
+          greenLineChart.chartData = chartData;
+          greenLineChart.activeIndex = index;
+          refs.greenLineChart.updateGradients(chartData);
+        }
+
+        asyncFunc(this.$refs, this.greenLineChart);
+      },
       initBigChart(index) {
         async function asyncFunc(refs, bigLineChart, index) {
           const [firstResponse, secondResponse] = await Promise.all([
@@ -257,6 +291,7 @@
         this.$rtl.enableRTL();
       }
       this.initBigChart(0);
+      this.initHeartChart();
     },
     beforeDestroy() {
       if (this.$rtl.isRTL) {
