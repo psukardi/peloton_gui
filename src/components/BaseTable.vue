@@ -1,4 +1,8 @@
 <template>
+<div>
+    <div slot="modal-text" v-html="modalText">
+      {{ modalText }}
+    </div>
   <table class="table tablesorter" :class="tableClass">
     <thead :class="theadClasses">
     <tr>
@@ -22,12 +26,18 @@
     </tr>
     </tbody>
   </table>
+  </div>
 </template>
 <script>
   import axios from "axios";
-  import VModal from 'vue-js-modal'
   export default {
     name: 'base-table',
+    data () {
+      return {
+          showModal: false,
+          modalText: ''
+      }
+    },
     props: {
       columns: {
         type: Array,
@@ -37,7 +47,7 @@
       data: {
         type: Array,
         default: () => [],
-        description: "Table data"
+        description: "Table data",
       },
       type: {
         type: String, // striped | hover
@@ -70,15 +80,20 @@
       getMusic(data, item, index){
         var music_req_url = 'http://54.90.15.230:5000/music_by_time/' + index;
 
-        async function asyncFunc(modal) {
+        async function asyncFunc(stuff) {
             const [music] = await Promise.all([
               axios.get(music_req_url)
             ]);
 
-            alert("Song list is " + music.data);
+          stuff.showModal = true;
+          stuff.modalText = '<h3>Song List</h3><ul>';
+          music.data.forEach(song => {
+            stuff.modalText += "<li>" + song + '</li>';
+          });
+          stuff.modalText += "</ul>";
         }
 
-        asyncFunc(this.$modal)
+        asyncFunc(this);
       }
     }
   };

@@ -242,8 +242,6 @@
             labels: firstResponse.data
           }
           greenLineChart.chartData = chartData;
-          greenLineChart.activeIndex = index;
-          refs.greenLineChart.updateGradients(chartData);
         }
 
         asyncFunc(this.$refs, this.greenLineChart);
