@@ -1,8 +1,13 @@
 <template>
 <div>
-    <div slot="modal-text" v-html="modalText">
-      {{ modalText }}
+    <div @click="dismiss()">
+      <base-alert v-if="showModal" type="info">
+          <span data-notify="message" v-html="modalText">{{modalText}}</span>
+      </base-alert>
     </div>
+    <!-- <div slot="modal-text" v-html="modalText">
+      {{ modalText }}
+    </div> -->
   <table class="table tablesorter" :class="tableClass">
     <thead :class="theadClasses">
     <tr>
@@ -30,6 +35,8 @@
 </template>
 <script>
   import axios from "axios";
+  import NotificationTemplate from '../pages/Notifications/NotificationTemplate';
+
   export default {
     name: 'base-table',
     data () {
@@ -77,20 +84,27 @@
       itemValue(item, column) {
         return item[column.toLowerCase()];
       },
+      dismiss(){
+        this.showModal = false;
+      },
       getMusic(data, item, index){
         var music_req_url = 'http://54.90.15.230:5000/music_by_time/' + index;
 
-        async function asyncFunc(stuff) {
+        async function asyncFunc(parent) {
             const [music] = await Promise.all([
               axios.get(music_req_url)
             ]);
 
-          stuff.showModal = true;
-          stuff.modalText = '<h3>Song List</h3><ul>';
+
+          var music_html = "<h3>Song List</h3><ul>";
           music.data.forEach(song => {
-            stuff.modalText += "<li>" + song + '</li>';
+            music_html += "<li>" + song + "</li>";
           });
-          stuff.modalText += "</ul>";
+
+
+          parent.modalText = music_html;
+          parent.showModal = true;
+
         }
 
         asyncFunc(this);
