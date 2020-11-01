@@ -64,7 +64,7 @@
         e.preventDefault();
         async function loadUser(user, parent){
           const [credentials] = await Promise.all([
-             axios.post('http://pelodashboard.com:5000/login',{ email: email.value, passwd: password.value})
+             axios.post('http://pelodashboard.com:5000/peloton_login',{ email: email.value, passwd: password.value})
           ]);
 
           const user_info = await axios.get('http://pelodashboard.com:5000/get_user_rollup', {
