@@ -21,9 +21,11 @@ import router from "./router/index";
 import BlackDashboard from "./plugins/blackDashboard";
 import i18n from "./i18n"
 import './registerServiceWorker'
+import VModal from 'vue-js-modal';
 Vue.use(BlackDashboard);
 Vue.use(VueRouter);
 Vue.use(RouterPrefetch);
+Vue.use(VModal);
 
 /* eslint-disable no-new */
 new Vue({

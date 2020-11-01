@@ -13,7 +13,10 @@
         <td v-for="(column, index) in columns"
             :key="index"
             v-if="hasValue(item, column)">
-          {{itemValue(item, column)}}
+              {{itemValue(item, column)}}
+        </td>
+        <td>
+          <base-button slot="footer" @click="getMusic(data, item, index)" type="primary" fill>Music Set</base-button>
         </td>
       </slot>
     </tr>
@@ -21,6 +24,8 @@
   </table>
 </template>
 <script>
+  import axios from "axios";
+  import VModal from 'vue-js-modal'
   export default {
     name: 'base-table',
     props: {
@@ -61,6 +66,19 @@
       },
       itemValue(item, column) {
         return item[column.toLowerCase()];
+      },
+      getMusic(data, item, index){
+        var music_req_url = 'http://54.90.15.230:5000/music_by_time/' + index;
+
+        async function asyncFunc(modal) {
+            const [music] = await Promise.all([
+              axios.get(music_req_url)
+            ]);
+
+            alert("Song list is " + music.data);
+        }
+
+        asyncFunc(this.$modal)
       }
     }
   };

@@ -19,6 +19,7 @@
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
     "vue-i18n": "^8.18.2",
+    "vue-js-modal": "^2.0.0-rc.6",
     "vue-router": "^3.3.4",
     "vue-router-prefetch": "^1.6.0",
     "vue2-transitions": "^0.3.0"
