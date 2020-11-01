@@ -20,7 +20,7 @@
       // once this is loaded we can pump in the course data
       async function asyncFunc(table) {
           const [firstResponse] = await Promise.all([
-            axios.get('http://54.90.15.230:5000/course_data'),
+            axios.get('http://pelodashboard.com:5000/course_data'),
           ]);
 
           table.data = firstResponse.data

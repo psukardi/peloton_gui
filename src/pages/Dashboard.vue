@@ -220,8 +220,8 @@
       initHeartChart() {
         async function asyncFunc(refs, greenLineChart) {
           const [firstResponse, secondResponse] = await Promise.all([
-            axios.get('http://54.90.15.230:5000/get_labels'),
-            axios.get('http://54.90.15.230:5000/get_heart_rate')
+            axios.get('http://pelodashboard.com:5000/get_labels'),
+            axios.get('http://pelodashboard.com:5000/get_heart_rate')
           ]);
 
           let chartData = {
@@ -251,8 +251,8 @@
       initBigChart(index) {
         async function asyncFunc(refs, bigLineChart, index) {
           const [firstResponse, secondResponse] = await Promise.all([
-            axios.get('http://54.90.15.230:5000/get_labels'),
-            axios.get('http://54.90.15.230:5000/get_charts')
+            axios.get('http://pelodashboard.com:5000/get_labels'),
+            axios.get('http://pelodashboard.com:5000/get_charts')
           ]);
 
           let chartData = {

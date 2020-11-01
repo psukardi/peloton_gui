@@ -85,7 +85,7 @@
         this.showModal = false;
       },
       getMusic(data, item, index){
-        var music_req_url = 'http://54.90.15.230:5000/music_by_time/' + index;
+        var music_req_url = 'http://pelodashboard.com:5000/music_by_time/' + index;
 
         async function asyncFunc(parent) {
             const [music] = await Promise.all([
