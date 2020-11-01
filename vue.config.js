@@ -2,6 +2,10 @@ const webpack = require('webpack');
 
 module.exports = {
   lintOnSave: false,
+  devServer: {
+    // This should fix the host issue
+    disableHostCheck: true
+  },
   configureWebpack: {
     // Set up all the aliases we use in our app.
     resolve: {
