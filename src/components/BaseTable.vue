@@ -5,9 +5,6 @@
           <span data-notify="message" v-html="modalText">{{modalText}}</span>
       </base-alert>
     </div>
-    <!-- <div slot="modal-text" v-html="modalText">
-      {{ modalText }}
-    </div> -->
   <table class="table tablesorter" :class="tableClass">
     <thead :class="theadClasses">
     <tr>

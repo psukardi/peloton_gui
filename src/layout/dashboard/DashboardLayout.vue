@@ -1,5 +1,11 @@
 <template>
   <div class="wrapper">
+    <side-bar>
+      <template slot="links">
+          <sidebar-link to="/dashboard" :name="$t('sidebar.dashboard')" icon="tim-icons icon-chart-pie-36"/>
+          <sidebar-link to="/profile" :name="$t('sidebar.userProfile')" icon="tim-icons icon-single-02"/>
+      </template>
+    </side-bar>
     <!-- <side-bar>
       <template slot="links">
         <sidebar-link to="/dashboard" :name="$t('sidebar.dashboard')" icon="tim-icons icon-chart-pie-36"/>

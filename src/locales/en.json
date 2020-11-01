@@ -60,11 +60,11 @@
   "sidebar": {
     "title": "Creative Tim",
     "shortTitle": "CT",
-    "dashboard": "dashboard",
+    "dashboard": "Overall Metrics",
     "icons": "Icons",
     "maps": "Maps",
     "notifications": "Notifications",
-    "userProfile": "User Profile",
+    "userProfile": "Your Information",
     "tableList": "Table List",
     "typography": "Typography",
     "rtlSupport": "RTL Support"
