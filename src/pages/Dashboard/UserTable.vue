@@ -30,7 +30,6 @@
               axios({
                 method: 'get',
                 url: url,
-                responseType: 'json'
               }).catch(function (error){
                 alert(error);
                 alert(JSON.stringify(error));
