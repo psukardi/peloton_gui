@@ -231,11 +231,18 @@
       }
     },
     methods: {
+
+      getCookieValue(a) {
+          var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+          return b ? b.pop() : '';
+      },
       initHeartChart() {
         async function asyncFunc(refs, greenLineChart) {
+          var tmp_user_id = getCookieValue("USER_ID");
+          alert(tmp_user_id);
           const [firstResponse, secondResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/get_labels'),
-            axios.get('http://pelodashboard.com:5000/get_heart_rate')
+            axios.get('http://pelodashboard.com:5000/get_labels', { user_id: tmp_user_id}),
+            axios.get('http://pelodashboard.com:5000/get_heart_rate', {user_id: tmp_user_id})
           ]);
 
           let chartData = {
