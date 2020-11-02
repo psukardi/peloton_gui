@@ -14,7 +14,7 @@
     methods:{
       getCookieValue(a) {
           var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
-          return b ? b.pop() : '';
+          return b ? b.pop() : 'f9982d7545db41be91e2fff28000547d';
       }
     },
     computed: {
