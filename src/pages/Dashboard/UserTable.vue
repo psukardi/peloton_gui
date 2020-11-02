@@ -25,8 +25,16 @@
     mounted() {
         async function asyncFunc(table, getCookieValue){
           var tmp_user_id = getCookieValue("USER_ID")
+          var url = 'http://pelodashboard.com:5000/course_data/' + tmp_user_id;
           const [firstResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/course_data/' + tmp_user_id)
+              axios({
+                method: 'get',
+                url: url,
+                responseType: 'json'
+              }).catch(function (error){
+                alert(error);
+                alert(JSON.stringify(error));
+              })
           ]);
 
           table.data = firstResponse.data
