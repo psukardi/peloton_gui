@@ -268,10 +268,6 @@
 
         asyncFunc(this.$refs, this.greenLineChart, this.getCookieValue);
       },
-      getCookieValue(a) {
-          var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
-          return b ? b.pop() : '';
-      },
       initBigChart(index) {
         async function asyncFunc(refs, bigLineChart, index, getCookieValue) {
           var tmp_user_id = getCookieValue("USER_ID");
@@ -306,7 +302,7 @@
           refs.bigChart.updateGradients(chartData);
         }
 
-        asyncFunc(this.$refs, this.bigLineChart, index);
+        asyncFunc(this.$refs, this.bigLineChart, index, this.getCookieValue);
       }
     },
     mounted() {
