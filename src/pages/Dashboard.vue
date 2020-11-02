@@ -247,7 +247,7 @@
           */
 
           const [firstResponse, secondResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/get_labels', params: { user_id: tmp_user_id}),
+            axios.get('http://pelodashboard.com:5000/get_labels', { user_id: tmp_user_id}),
             axios.get('http://pelodashboard.com:5000/get_heart_rate', {user_id: tmp_user_id})
           ]);
 
