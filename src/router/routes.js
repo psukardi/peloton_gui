@@ -54,7 +54,11 @@ const routes = [
       }
     ]
   },
-  { path: "*", component: NotFound },
+  { path: '/logout', redirect: to => {
+    window.location.href = 'http://pelodashboard.com:5000/logout';
+
+  }},
+  { path: "*", component: NotFound }
 ];
 
 /**

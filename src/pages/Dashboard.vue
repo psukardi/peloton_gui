@@ -6,7 +6,8 @@
             <blockquote>
               <p class="blockquote blockquote-primary">
               Welcome to your Peloton Dashboard.  To see your own data, please click the login and pull data button.  All of your ride data
-              will be retreived and displayed.
+              will be retreived and displayed.  If you're having issues seeing your data, please click here:
+              <a href="http://pelodashboard.com/:8080/profile#/logout">Refresh My Data</a>
                 <br>
               </p>
             </blockquote>
