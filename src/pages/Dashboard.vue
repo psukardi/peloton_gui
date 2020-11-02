@@ -1,20 +1,6 @@
 <template>
   <div>
         <a href="https://www.buymeacoffee.com/psukardi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=psukardi&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
-        <br />
-        <div class="typography-line">
-            <blockquote>
-              <p class="blockquote blockquote-primary">
-              Welcome to your Peloton Dashboard.  To see your own data, please click the login and pull data button.  All of your ride data
-              will be retreived and displayed.  If you're having issues seeing your data, please click here:
-              <a href="http://pelodashboard.com:5000/login">Refresh My Data</a>
-                <br>
-              </p>
-            </blockquote>
-          </div>
-
-        <base-button type="primary">Login and pull your data</base-button>
-
 
     <div class="row">
       <div class="col-12">
@@ -231,23 +217,11 @@
       }
     },
     methods: {
-
-      getCookieValue(a) {
-          var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
-          return b ? b.pop() : 'f9982d7545db41be91e2fff28000547d';
-      },
       initHeartChart() {
-        async function asyncFunc(refs, greenLineChart, getCookieValue) {
-          var tmp_user_id = getCookieValue("USER_ID");
+        async function asyncFunc(refs, greenLineChart) {
           const [firstResponse, secondResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/get_labels/' + tmp_user_id).catch(function (error){
-                alert(error);
-                alert(JSON.stringify(error));
-              }),
-            axios.get('http://pelodashboard.com:5000/get_heart_rate/' + tmp_user_id).catch(function (error){
-                alert(error);
-                alert(JSON.stringify(error));
-              })
+            axios.get('http://pelodashboard.com:5000/get_labels'),
+            axios.get('http://pelodashboard.com:5000/get_heart_rate')
           ]);
 
           let chartData = {
@@ -272,20 +246,13 @@
           greenLineChart.chartData = chartData;
         }
 
-        asyncFunc(this.$refs, this.greenLineChart, this.getCookieValue);
+        asyncFunc(this.$refs, this.greenLineChart);
       },
       initBigChart(index) {
-        async function asyncFunc(refs, bigLineChart, index, getCookieValue) {
-          var tmp_user_id = getCookieValue("USER_ID");
+        async function asyncFunc(refs, bigLineChart, index) {
           const [firstResponse, secondResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/get_labels/' + tmp_user_id).catch(function (error){
-                alert(error);
-                alert(JSON.stringify(error));
-              }),
-            axios.get('http://pelodashboard.com:5000/get_charts/' + tmp_user_id).catch(function (error){
-                alert(error);
-                alert(JSON.stringify(error));
-              })
+            axios.get('http://pelodashboard.com:5000/get_labels'),
+            axios.get('http://pelodashboard.com:5000/get_charts')
           ]);
 
           let chartData = {
@@ -314,7 +281,7 @@
           refs.bigChart.updateGradients(chartData);
         }
 
-        asyncFunc(this.$refs, this.bigLineChart, index, this.getCookieValue);
+        asyncFunc(this.$refs, this.bigLineChart, index);
       }
     },
     mounted() {
