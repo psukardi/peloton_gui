@@ -19,19 +19,16 @@
     methods: {
       getCookieValue(a) {
           var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
-          return b ? b.pop() : '';
+          return b ? b.pop() : 'f9982d7545db41be91e2fff28000547d';
       }
     },
     mounted() {
       // once this is loaded we can pump in the course data
       async function asyncFunc(table, getCookieValue) {
           var user_id = getCookieValue("USER_ID");
+          var course_url = 'http://pelodashboard.com:5000/course_data/' + user_id
           const [firstResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/course_data', {
-              params: {
-                'user_id' : user_id
-              }
-            }),
+            axios.get(course_url)
           ]);
 
           table.data = firstResponse.data

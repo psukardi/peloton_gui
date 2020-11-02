@@ -219,22 +219,16 @@
     methods: {
       getCookieValue(a) {
           var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
-          return b ? b.pop() : '';
+          return b ? b.pop() : 'f9982d7545db41be91e2fff28000547d';
       },
       initHeartChart() {
         async function asyncFunc(refs, greenLineChart, getCookieValue) {
           var user_id = getCookieValue("USER_ID");
+          var label_url = 'http://pelodashboard.com:5000/get_labels/' + user_id;
+          var heart_url = 'http://pelodashboard.com:5000/get_heart_rate/' + user_id;
           const [firstResponse, secondResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/get_labels', {
-              params: {
-                'user_id': user_id
-              }
-            }),
-            axios.get('http://pelodashboard.com:5000/get_heart_rate', {
-              params: {
-                'user_id': user_id
-              }
-            })
+            axios.get(label_url),
+            axios.get(heart_url)
           ]);
 
           let chartData = {
@@ -264,17 +258,11 @@
       initBigChart(index) {
         async function asyncFunc(refs, bigLineChart, index, getCookieValue) {
           var user_id = getCookieValue("USER_ID");
+          var label_url = 'http://pelodashboard.com:5000/get_labels/' + user_id;
+          var heart_url = 'http://pelodashboard.com:5000/get_charts/' + user_id;
           const [firstResponse, secondResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/get_labels', {
-              params: {
-                'user_id' : user_id
-              }
-            }),
-            axios.get('http://pelodashboard.com:5000/get_charts',{
-              params: {
-                'user_id' : user_id
-              }
-            })
+            axios.get(label_url),
+            axios.get(heart_url)
           ]);
 
           let chartData = {
