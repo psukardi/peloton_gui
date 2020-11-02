@@ -26,7 +26,7 @@
         async function asyncFunc(table, getCookieValue){
           var tmp_user_id = getCookieValue("USER_ID")
           const [firstResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/course_data')
+            axios.get('http://pelodashboard.com:5000/course_data/' + tmp_user_id)
           ]);
 
           table.data = firstResponse.data
