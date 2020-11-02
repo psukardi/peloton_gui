@@ -11,27 +11,20 @@
     components: {
       BaseTable
     },
-    methods: {
-      getCookieValue(a) {
-          var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
-          return b ? b.pop() : '';
-      }
-    },
     computed: {
       table(){
         return this.$t('dashboard.usersTable');
       }
     },
+    getCookieValue(a) {
+        var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+        return b ? b.pop() : '';
+    },
     mounted() {
       // once this is loaded we can pump in the course data
       async function asyncFunc(table, getCookieValue) {
-          var tmp_user_id = getCookieValue("USER_ID");
           const [firstResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/course_data', {
-              params: {
-                user_id : tmp_user_id
-              }
-            }),
+            axios.get('http://pelodashboard.com:5000/course_data'),
           ]);
 
           table.data = firstResponse.data

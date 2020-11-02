@@ -239,17 +239,16 @@
       initHeartChart() {
         async function asyncFunc(refs, greenLineChart, getCookieValue) {
           var tmp_user_id = getCookieValue("USER_ID");
+
+          /*
+           const user_info = await axios.get('http://pelodashboard.com:5000/get_user_rollup', {
+            params: credentials.data
+          });
+          */
+
           const [firstResponse, secondResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/get_labels', {
-              params: {
-                user_id : tmp_user_id
-              }
-            }),
-            axios.get('http://pelodashboard.com:5000/get_heart_rate', {
-              params: {
-                user_id : tmp_user_id
-              }
-            }),
+            axios.get('http://pelodashboard.com:5000/get_labels', params: { user_id: tmp_user_id}),
+            axios.get('http://pelodashboard.com:5000/get_heart_rate', {user_id: tmp_user_id})
           ]);
 
           let chartData = {
@@ -280,16 +279,8 @@
         async function asyncFunc(refs, bigLineChart, index, getCookieValue) {
           var tmp_user_id = getCookieValue("USER_ID");
           const [firstResponse, secondResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/get_labels', {
-              params: {
-                user_id : tmp_user_id
-              }
-            }),
-            axios.get('http://pelodashboard.com:5000/get_charts', {
-              params: {
-                user_id : tmp_user_id
-              }
-            }),
+            axios.get('http://pelodashboard.com:5000/get_labels', { user_id: tmp_user_id}),
+            axios.get('http://pelodashboard.com:5000/get_charts', { user_id: tmp_user_id})
           ]);
 
           let chartData = {
