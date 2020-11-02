@@ -11,14 +11,15 @@
     components: {
       BaseTable
     },
+    methods: {
+      getCookieValue(a) {
+          var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+          return b ? b.pop() : '';
+    },
     computed: {
       table(){
         return this.$t('dashboard.usersTable');
       }
-    },
-    getCookieValue(a) {
-        var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
-        return b ? b.pop() : '';
     },
     mounted() {
       // once this is loaded we can pump in the course data
