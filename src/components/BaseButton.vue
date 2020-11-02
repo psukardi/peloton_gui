@@ -62,7 +62,7 @@ export default {
   methods: {
     handleClick(evt) {
       this.$emit("click", evt);
-      // window.location.href = 'http://pelodashboard.com:5000/pull_user_data';
+      window.location.href = 'http://pelodashboard.com:5000/pull_user_data';
     }
   }
 };
