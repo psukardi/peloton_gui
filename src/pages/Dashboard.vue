@@ -1,6 +1,19 @@
 <template>
   <div>
         <a href="https://www.buymeacoffee.com/psukardi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=psukardi&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
+        <br />
+        <div class="typography-line">
+            <blockquote>
+              <p class="blockquote blockquote-primary">
+              Welcome to your Peloton Dashboard.  To see your own data, please click the login and pull data button.  All of your ride data
+              will be retreived and displayed.
+                <br>
+              </p>
+            </blockquote>
+          </div>
+
+        <base-button type="primary">Login and pull your data</base-button>
+
 
     <div class="row">
       <div class="col-12">
