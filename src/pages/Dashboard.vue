@@ -217,11 +217,24 @@
       }
     },
     methods: {
+      getCookieValue(a) {
+          var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+          return b ? b.pop() : '';
+      },
       initHeartChart() {
-        async function asyncFunc(refs, greenLineChart) {
+        async function asyncFunc(refs, greenLineChart, getCookieValue) {
+          var user_id = getCookieValue("USER_ID");
           const [firstResponse, secondResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/get_labels'),
-            axios.get('http://pelodashboard.com:5000/get_heart_rate')
+            axios.get('http://pelodashboard.com:5000/get_labels', {
+              params: {
+                'user_id': user_id
+              }
+            }),
+            axios.get('http://pelodashboard.com:5000/get_heart_rate', {
+              params: {
+                'user_id': user_id
+              }
+            })
           ]);
 
           let chartData = {
@@ -246,13 +259,22 @@
           greenLineChart.chartData = chartData;
         }
 
-        asyncFunc(this.$refs, this.greenLineChart);
+        asyncFunc(this.$refs, this.greenLineChart, getCookieValue);
       },
       initBigChart(index) {
-        async function asyncFunc(refs, bigLineChart, index) {
+        async function asyncFunc(refs, bigLineChart, index, getCookieValue) {
+          var user_id = getCookieValue("USER_ID");
           const [firstResponse, secondResponse] = await Promise.all([
-            axios.get('http://pelodashboard.com:5000/get_labels'),
-            axios.get('http://pelodashboard.com:5000/get_charts')
+            axios.get('http://pelodashboard.com:5000/get_labels', {
+              params: {
+                'user_id' : user_id
+              }
+            }),
+            axios.get('http://pelodashboard.com:5000/get_charts',{
+              params: {
+                'user_id' : user_id
+              }
+            })
           ]);
 
           let chartData = {
@@ -281,7 +303,7 @@
           refs.bigChart.updateGradients(chartData);
         }
 
-        asyncFunc(this.$refs, this.bigLineChart, index);
+        asyncFunc(this.$refs, this.bigLineChart, index, getCookieValue);
       }
     },
     mounted() {
