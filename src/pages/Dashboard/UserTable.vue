@@ -37,7 +37,7 @@
           table.data = firstResponse.data
       }
 
-      asyncFunc(this.$t('dashboard.usersTable'), getCookieValue);
+      asyncFunc(this.$t('dashboard.usersTable'), this.getCookieValue);
     },
   }
 </script>

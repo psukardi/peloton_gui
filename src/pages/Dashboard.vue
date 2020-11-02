@@ -259,7 +259,7 @@
           greenLineChart.chartData = chartData;
         }
 
-        asyncFunc(this.$refs, this.greenLineChart, getCookieValue);
+        asyncFunc(this.$refs, this.greenLineChart, this.getCookieValue);
       },
       initBigChart(index) {
         async function asyncFunc(refs, bigLineChart, index, getCookieValue) {
@@ -303,7 +303,7 @@
           refs.bigChart.updateGradients(chartData);
         }
 
-        asyncFunc(this.$refs, this.bigLineChart, index, getCookieValue);
+        asyncFunc(this.$refs, this.bigLineChart, index, this.getCookieValue);
       }
     },
     mounted() {
