@@ -26,7 +26,8 @@ Vue.use(BlackDashboard);
 Vue.use(VueRouter);
 Vue.use(RouterPrefetch);
 Vue.use(VModal);
-
+Vue.http.headers.common['Access-Control-Allow-Origin'] = '*'
+Vue.http.options.emulateJSON
 /* eslint-disable no-new */
 new Vue({
   router,
