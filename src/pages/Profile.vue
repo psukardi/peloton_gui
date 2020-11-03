@@ -40,7 +40,7 @@
     mounted() {
       async function loadUser(user, getCookieValue){
           var user_id = getCookieValue("USER_ID");
-          rollup_url = 'http://pelodashboard.com:5000/get_user_rollup/' + user_id
+          var rollup_url = 'http://pelodashboard.com:5000/get_user_rollup/' + user_id
 
           const [rollup] = await Promise.all([
             axios.get(rollup_url)
@@ -52,7 +52,7 @@
 
         }
 
-        loadUser(user, this.getCookieValue);
+        loadUser(this.user, this.getCookieValue);
       }
   }
 </script>
