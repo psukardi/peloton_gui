@@ -38,17 +38,7 @@
       }
     },
     mounted() {
-
-      const signupForm = document.getElementById('login-form');
-      const email = signupForm.querySelector('input[name=email]');
-      const password = signupForm.querySelector('input[name=password]');
-      const user = this.user;
-
-      signupForm.addEventListener('submit', processSignupForm);
-
-      function processSignupForm(e){
-        e.preventDefault();
-        async function loadUser(user, parent){
+      async function loadUser(user, getCookieValue){
           var user_id = getCookieValue("USER_ID");
           rollup_url = 'http://pelodashboard.com:5000/get_user_rollup/' + user_id
 
@@ -62,9 +52,8 @@
 
         }
 
-        loadUser(user, this.showUser, this.getCookieValue);
+        loadUser(user, this.getCookieValue);
       }
-    }
   }
 </script>
 <style>
