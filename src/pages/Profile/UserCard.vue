@@ -7,14 +7,6 @@
       <div class="block block-two"></div>
       <div class="block block-three"></div>
       <div class="block block-four"></div>
-      <a href="#">
-        <img v-bind:src=user.photoUrl>
-        <h5 class="title" id="userFullName">{{user.fullName}}</h5>
-      </a>
-      <p class="description">
-        {{user.title}}
-      </p>
-    </div>
     <p></p>
     <h4 class="title">Historcial Info</h4>
     <ul>

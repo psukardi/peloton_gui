@@ -1,27 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-md-4" v-if="showLogin">
-        <card>
-        <form id="login-form">
-          <input label="Email address"
-                      name="email"
-                      type="email"
-                      placeholder="Enter email">
-              <small slot="helperText" id="emailHelp" class="form-text text-muted">
-                We will not save this information, simply log you into peloton.
-              </small>
-          </input>
-          <input label="Password"
-                      name="password"
-                      type="password"
-                      placeholder="Password">
-          </input>
-        <base-button native-type="submit" type="primary">Submit</base-button>
-        </form>
-    </card>
-      </div>
-      <div class="col-md-8" v-if="showUser">
+      <div class="col-md-12" v-if="showUser">
         <user-card :user="user"></user-card>
       </div>
     </div>
@@ -35,6 +15,12 @@
     components: {
       EditProfileForm,
       UserCard
+    },
+    methods:{
+      getCookieValue(a) {
+          var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+          return b ? b.pop() : 'f9982d7545db41be91e2fff28000547d';
+      }
     },
     data() {
       return {
@@ -63,23 +49,20 @@
       function processSignupForm(e){
         e.preventDefault();
         async function loadUser(user, parent){
-          const [credentials] = await Promise.all([
-             axios.post('http://pelodashboard.com:5000/peloton_login',{ email: email.value, passwd: password.value})
+          var user_id = getCookieValue("USER_ID");
+          rollup_url = 'http://pelodashboard.com:5000/get_user_rollup/' + user_id
+
+          const [rollup] = await Promise.all([
+            axios.get(rollup_url)
           ]);
 
-          const user_info = await axios.get('http://pelodashboard.com:5000/get_user_rollup', {
-            params: credentials.data
-          });
-
-          user.fullName = user_info.data.name;
-          user.photoUrl = user_info.data.photo_url;
-          user.totalAchievements = user_info.data.total_achievements;
-          user.totalRides = user_info.data.total_rides;
-          user.totalMiles = user_info.data.total_miles;
+          user.totalAchievements = rollup.data.total_achievements;
+          user.totalRides = rollup.data.total_rides;
+          user.totalMiles = rollup.data.total_miles;
 
         }
 
-        loadUser(user, this.showUser);
+        loadUser(user, this.showUser, this.getCookieValue);
       }
     }
   }
