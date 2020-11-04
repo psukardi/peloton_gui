@@ -1,21 +1,26 @@
 <template>
   <div>
-        <div class="typography-line">
+        <div>
+          <a href="https://www.buymeacoffee.com/psukardi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>        <br />
+          <br />
             <blockquote>
               <p class="blockquote blockquote-primary">
-                                    <a href="https://www.buymeacoffee.com/psukardi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>        <br />
+              Welcome to your Peloton Dashboard. Your new home to analyzing your riding metrics. Here you can see information
+              like average output, cadence, resistance, speed and miles-per-ride over the course of your journey.  You can now easilly tell
+              if you've hit a wall or are still making progress day-over-day and week-over-week <br/> <br />To see your own data, please first login with your Pelton Credentials.  After you've
+              successfully logged-in and are re-directed back to this screen, simiply click the 'Get Your Data' button.  Please be patient,
+              as this can take some time.
 
-              Welcome to your Peloton Dashboard.  To see your own data, please click the login and pull data button.  All of your ride data
-              will be retreived and displayed.  If you're having issues seeing your data, please click here:
-              <a href="http://pelodashboard.com:5000/login">Refresh My Data</a>
-              <br />
               If the instructions are unclear or you need some assistance, please click <a href="https://www.youtube.com/watch?v=KlZPHn9WCUo&feature=youtu.be">Here</a>
               <br/><br/>
-              Finally, if you've found this service useful, I would love if you could buy me a pizza!
+              Finally, if you've found this service useful, I would love if you could buy me a coffee!
               </p>
+              <a href="http://pelodashboard.com:5000/login">
+                      <base-button type="primary" id="pull">Login</base-button> &nbsp;&nbsp;&nbsp;
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <a href="http://pelodashboard.com:5000/pull_user_data">
-          <base-button type="primary" id="pull">Login and pull your data</base-button>
-        </a>
+                      <base-button type="primary" id="pull">Get Your Data</base-button>
+                    </a>
             </blockquote>
           </div>
 
