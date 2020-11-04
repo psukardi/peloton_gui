@@ -1,7 +1,7 @@
-This is my front-end for https://github.com/psukardi/peloton_flask_server 
+This is my front-end for https://github.com/psukardi/peloton_flask_server
 
-Just modify your endpoints and you're good to go 
+Just modify your endpoints and you're good to go
 
 If you think this was cool, and I've helped you out, I would appreciate some coffee.
 
-<a href="https://www.buymeacoffee.com/psukardi" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+<a href="https://www.buymeacoffee.com/psukardi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>
