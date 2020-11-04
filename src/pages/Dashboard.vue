@@ -13,12 +13,13 @@
               <br/><br/>
               Finally, if you've found this service useful, I would love if you could buy me a pizza!
               </p>
+                      <a href="http://pelodashboard.com:5000/pull_user_data">
+          <base-button type="primary" id="pull">Login and pull your data</base-button>
+        </a>
             </blockquote>
           </div>
 
-        <a href="http://pelodashboard.com:5000/pull_user_data">
-          <base-button type="primary" id="pull">Login and pull your data</base-button>
-        </a>
+
     <div class="row">
       <div class="col-12">
         <card type="chart">
