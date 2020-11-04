@@ -7,6 +7,8 @@
               Welcome to your Peloton Dashboard.  To see your own data, please click the login and pull data button.  All of your ride data
               will be retreived and displayed.  If you're having issues seeing your data, please click here:
               <a href="http://pelodashboard.com:5000/login">Refresh My Data</a>
+              <br />
+              If the instructions are unclear or you need some assistance, please click <a href="https://www.youtube.com/watch?v=KlZPHn9WCUo&feature=youtu.be">Here</a>
               <br/><br/>
               Finally, if you've found this service useful, I would love if you could buy me a pizza!
               </p>
