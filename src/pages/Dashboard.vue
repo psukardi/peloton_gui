@@ -1,7 +1,9 @@
 <template>
   <div>
         <div>
-          <a href="https://www.buymeacoffee.com/psukardi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00"></a>        <br />
+          <h4><a href="https://www.buymeacoffee.com/psukardi">
+              <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00">
+          </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ total_users }} Users Trust PeloDashboard with their analytic needs</h4>
           <br />
             <blockquote>
               <p class="blockquote blockquote-primary">
@@ -145,8 +147,12 @@
       TaskList,
       UserTable
     },
+    data: {
+      total_users: ''
+    },
     data() {
       return {
+        total_users : '',
         bigLineChart: {
           allData: [
           ],
@@ -158,7 +164,7 @@
           extraOptions: chartConfigs.purpleChartOptions,
           gradientColors: config.colors.primaryGradient,
           gradientStops: [1, 0.4, 0],
-          categories: []
+          categories: [],
         },
         purpleLineChart: {
           extraOptions: chartConfigs.purpleChartOptions,
@@ -224,7 +230,7 @@
           },
           gradientColors: config.colors.primaryGradient,
           gradientStops: [1, 0.4, 0],
-        }
+        },
       }
     },
     computed: {
@@ -239,6 +245,16 @@
       }
     },
     methods: {
+      populateTotalUsers(){
+        var self = this;
+        axios.get('http://pelodashboard.com:5000/get_total_users').then(function (response) {
+          console.log(response);
+          self.total_users = response.data.total_users;
+        }).catch(function (error) {
+          console.log(error);
+        });
+
+      },
       getCookieValue(a) {
           var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
           return b ? b.pop() : 'f9982d7545db41be91e2fff28000547d';
@@ -252,6 +268,7 @@
             axios.get(label_url),
             axios.get(heart_url)
           ]);
+
 
           let chartData = {
             datasets: [{
@@ -276,6 +293,7 @@
         }
 
         asyncFunc(this.$refs, this.greenLineChart, this.getCookieValue);
+
       },
       initBigChart(index) {
         async function asyncFunc(refs, bigLineChart, index, getCookieValue) {
@@ -324,6 +342,7 @@
       }
       this.initBigChart(0);
       this.initHeartChart();
+      this.populateTotalUsers();
     },
     beforeDestroy() {
       if (this.$rtl.isRTL) {
