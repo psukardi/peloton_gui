@@ -3,7 +3,8 @@
         <div>
           <h4><a href="https://www.buymeacoffee.com/psukardi">
               <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00">
-          </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ total_users }} Users Trust PeloDashboard with their analytic needs</h4>
+          </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ total_users }} Users have gone on over {{total_rides}} rides
+          going over {{total_miles}} miles. </h4>
           <br />
             <blockquote>
               <p class="blockquote blockquote-primary">
@@ -148,11 +149,15 @@
       UserTable
     },
     data: {
-      total_users: ''
+      total_users: '',
+      total_miles: '',
+      total_rides: ''
     },
     data() {
       return {
         total_users : '',
+        total_miles: '',
+        total_rides: '',
         bigLineChart: {
           allData: [
           ],
@@ -247,9 +252,11 @@
     methods: {
       populateTotalUsers(){
         var self = this;
-        axios.get('http://pelodashboard.com:5000/get_total_users').then(function (response) {
+        axios.get('http://pelodashboard.com:5000/totals').then(function (response) {
           console.log(response);
           self.total_users = response.data.total_users;
+          self.total_miles = response.data.total_miles;
+          self.total_rides = response.data.total_rides;
         }).catch(function (error) {
           console.log(error);
         });
