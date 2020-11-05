@@ -22,6 +22,7 @@
     "vue-js-modal": "^2.0.0-rc.6",
     "vue-router": "^3.3.4",
     "vue-router-prefetch": "^1.6.0",
+    "vue-social-sharing": "^3.0.3",
     "vue2-transitions": "^0.3.0"
   },
   "devDependencies": {
