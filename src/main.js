@@ -17,6 +17,8 @@ import RouterPrefetch from 'vue-router-prefetch'
 import VueSocialSharing from 'vue-social-sharing'
 
 import App from "./App";
+import Ads from 'vue-google-adsense'
+
 // TIP: change to import router from "./router/starterRouter"; to start with a clean layout
 import router from "./router/index";
 
@@ -29,6 +31,10 @@ Vue.use(VueRouter);
 Vue.use(RouterPrefetch);
 Vue.use(VModal);
 Vue.use(VueSocialSharing);
+Vue.use(require('vue-script2'))
+Vue.use(Ads.Adsense)
+Vue.use(Ads.InArticleAdsense)
+Vue.use(Ads.InFeedAdsense)
 
 /* eslint-disable no-new */
 new Vue({

@@ -141,7 +141,13 @@
       </ShareNetwork>
       </base-button>
       <a href="https://www.buymeacoffee.com/psukardi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
-
+      </div>
+      <div class="col-md-12">
+        <Adsense
+          data-ad-client="ca-pub-1865965407697407"
+          data-ad-slot="1234567890">
+      </Adsense>
+      </div>
   </div>
 
       </div>
