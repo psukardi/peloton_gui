@@ -27,7 +27,11 @@
             </blockquote>
           </div>
 
-
+    <div class="row">
+      <div class="col-6">
+          <div id="adsgoeshere" v-html="awsContent"></div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-12">
         <card type="chart">
@@ -70,39 +74,6 @@
       </div>
     </div>
     <div class="row">
-      <!-- <div class="col-lg-4" :class="{'text-right': isRTL}">
-        <card type="chart">
-          <template slot="header">
-            <h5 class="card-category">{{$t('dashboard.totalShipments')}}</h5>
-            <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary "></i> 763,215</h3>
-          </template>
-          <div class="chart-area">
-            <line-chart style="height: 100%"
-                        chart-id="purple-line-chart"
-                        :chart-data="purpleLineChart.chartData"
-                        :gradient-colors="purpleLineChart.gradientColors"
-                        :gradient-stops="purpleLineChart.gradientStops"
-                        :extra-options="purpleLineChart.extraOptions">
-            </line-chart>
-          </div>
-        </card>
-      </div>
-      <div class="col-lg-4" :class="{'text-right': isRTL}">
-        <card type="chart">
-          <template slot="header">
-            <h5 class="card-category">{{$t('dashboard.dailySales')}}</h5>
-            <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info "></i> 3,500€</h3>
-          </template>
-          <div class="chart-area">
-            <bar-chart style="height: 100%"
-                       chart-id="blue-bar-chart"
-                       :chart-data="blueBarChart.chartData"
-                       :gradient-stops="blueBarChart.gradientStops"
-                       :extra-options="blueBarChart.extraOptions">
-            </bar-chart>
-          </div>
-        </card>
-      </div> -->
       <div class="col-12">
         <card type="chart">
           <template slot="header">
@@ -130,15 +101,16 @@
         </card>
       </div>
       <div class="col-md-12">
-      <base-button><ShareNetwork
-          network="facebook"
-          url="http://www.pelodashboard.com"
-          title="Say hi to PeloDashboard the home for all your Bike Data"
-          description="Come visit PeloDashboard to make the most of each ride."
-          hashtags="peloton"
-        >
-          Share on Facebook
-      </ShareNetwork>
+      <base-button>
+        <ShareNetwork
+            network="facebook"
+            url="http://www.pelodashboard.com"
+            title="Say hi to PeloDashboard the home for all your Bike Data"
+            description="Come visit PeloDashboard to make the most of each ride."
+            hashtags="peloton"
+          >
+            Share on Facebook
+        </ShareNetwork>
       </base-button>
       <a href="https://www.buymeacoffee.com/psukardi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
       </div>
@@ -172,13 +144,15 @@
     data: {
       total_users: '',
       total_miles: '',
-      total_rides: ''
+      total_rides: '',
+      awsContent: ''
     },
     data() {
       return {
         total_users : '',
         total_miles: '',
         total_rides: '',
+        awsContent: '',
         bigLineChart: {
           allData: [
           ],
@@ -371,6 +345,24 @@
       this.initBigChart(0);
       this.initHeartChart();
       this.populateTotalUsers();
+      this.awsContent = document.getElementById("aws-ad").innerHTML;
+
+      setTimeout(() => {
+        if (document.getElementById('adsgoeshere').clientHeight <= 0){
+          console.log('user is blocking');
+        } else{
+            console.log('user is not');
+        }
+      }, 10);
+
+      // setTimeout(() => {
+      //   if ( document.getElementById('adgoeshere').clientHeight == null){
+
+      //   }
+      //   else (document.getElementById('adgoeshere').clientHeight <= 0) {
+      //     alert('please consider disabling ads to support this site');
+      //   }
+      // }, 40);
     },
     beforeDestroy() {
       if (this.$rtl.isRTL) {
