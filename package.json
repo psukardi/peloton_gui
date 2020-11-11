@@ -15,7 +15,10 @@
   "dependencies": {
     "axios": "^0.21.0",
     "chart.js": "^2.9.3",
+    "element-ui": "^2.14.0",
+    "fuse.js": "^3.4.3",
     "register-service-worker": "^1.7.1",
+    "sweetalert2": "^10.9.1",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
     "vue-google-adsense": "^1.9.0",

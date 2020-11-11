@@ -134,10 +134,7 @@
         </card>
       </div>
       <div class="col-md-12">
-        <div class="row">
-          <div class="col-6">
             <div id="adsgoeshere" v-html="awsContent"></div>
-          </div>
         </div>
       </div>
       <div class="col-md-12">
