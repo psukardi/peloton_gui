@@ -14,11 +14,11 @@
     </tr>
     </thead>
     <tbody :class="tbodyClasses">
-    <tr v-for="(item, index) in data" :key="index">
+    <!-- <tr v-for="(item, index) in data" :key="index"> -->
+      <tr v-for="(item,index) in sortedWorkouts" :key="index">
       <slot :row="item">
         <td v-for="(column, index) in columns"
-            :key="index"
-            v-if="hasValue(item, column)">
+            :key="index" v-if="hasValue(item, column)">
               {{itemValue(item, column)}}
         </td>
         <td>
@@ -27,6 +27,10 @@
       </slot>
     </tr>
     </tbody>
+    <p>
+    <button @click="prevPage">Previous</button>
+    <button @click="nextPage">Next</button>
+    </p>
   </table>
   </div>
 </template>
@@ -39,7 +43,11 @@
     data () {
       return {
           showModal: false,
-          modalText: ''
+          modalText: '',
+          pageSize: 10,
+          currentPage: 1,
+          currentSort:'name',
+          currentSortDir:'asc',
       }
     },
     props: {
@@ -49,7 +57,7 @@
         description: "Table columns"
       },
       data: {
-        type: Array,
+        type: Object,
         default: () => [],
         description: "Table data",
       },
@@ -72,14 +80,41 @@
     computed: {
       tableClass() {
         return this.type && `table-${this.type}`;
-      }
+      },
+      sortedWorkouts:function() {
+        return Object.keys(this.data).sort((a,b) => {
+          let modifier = 1;
+          if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+          if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+          return 0;
+        }).filter((row, index) => {
+            let start = (this.currentPage-1)*this.pageSize;
+            let end = this.currentPage*this.pageSize;
+            if(index >= start && index < end) return true;
+          });
+     }
+
     },
     methods: {
+      sort:function(s) {
+        alert('in the sort');
+        //if s == current sort, reverse
+        if(s === this.currentSort) {
+          this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
+        }
+        this.currentSort = s;
+      },
+      prevPage:function() {
+        if(this.currentPage > 1) this.currentPage--;
+      },
+      nextPage:function() {
+        if((this.currentPage*this.pageSize) < Object.keys(this.data).length) this.currentPage++;
+      },
       hasValue(item, column) {
         return item[column.toLowerCase()] !== "undefined";
       },
       itemValue(item, column) {
-        return item[column.toLowerCase()];
+        return this.data[item][column.toLowerCase()];
       },
       dismiss(){
         this.showModal = false;
