@@ -1,8 +1,7 @@
 <template>
   <div>
         <div>
-          <h4><a href="https://www.buymeacoffee.com/psukardi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
-
+          <h4>
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ total_users }} Users have gone on over {{total_rides}} rides
           going over {{total_miles}} miles.   </h4>
           <br />
@@ -24,14 +23,22 @@
                       <a href="http://pelodashboard.com:5000/pull_user_data">
                       <base-button type="primary" id="pull">Get Your Data</base-button>
                     </a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="https://www.buymeacoffee.com/psukardi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
+      <base-button>
+        <ShareNetwork
+            network="facebook"
+            url="http://www.pelodashboard.com"
+            title="Say hi to PeloDashboard the home for all your Bike Data"
+            description="Come visit PeloDashboard to make the most of each ride."
+            hashtags="peloton"
+          >
+            Share on Facebook
+        </ShareNetwork>
+      </base-button>
             </blockquote>
           </div>
-
-    <div class="row">
-      <div class="col-6">
-          <div id="adsgoeshere" v-html="awsContent"></div>
-      </div>
-    </div>
     <div class="row">
       <div class="col-12">
         <card type="chart">
@@ -101,18 +108,7 @@
         </card>
       </div>
       <div class="col-md-12">
-      <base-button>
-        <ShareNetwork
-            network="facebook"
-            url="http://www.pelodashboard.com"
-            title="Say hi to PeloDashboard the home for all your Bike Data"
-            description="Come visit PeloDashboard to make the most of each ride."
-            hashtags="peloton"
-          >
-            Share on Facebook
-        </ShareNetwork>
-      </base-button>
-      <a href="https://www.buymeacoffee.com/psukardi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
+
       </div>
       <div class="col-md-12">
         <Adsense
@@ -121,9 +117,7 @@
       </Adsense>
       </div>
   </div>
-
       </div>
-    </div>
 </template>
 <script>
   import LineChart from '@/components/Charts/LineChart';
