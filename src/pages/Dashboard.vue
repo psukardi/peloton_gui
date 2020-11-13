@@ -39,9 +39,9 @@
         <div class="col-sm-6 ml-auto">
           <h4>Using the Site</h4>
           <p>
-            To make the best of your time with PeloDashboard press the login 
+            To make the best of your time with PeloDashboard click the login 
             button to authenticate with Peloton.  After returning to this screen,
-            press the "Get Your Data" button.  After a few minutes the page 
+            click Get Your Data.  After a few minutes the page 
             will refresh and you'll have access to all of your rides.  To look
             at an individual ride, navigate to the "Ride History" tab.</p>
         </div>
