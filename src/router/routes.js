@@ -5,6 +5,7 @@ import NotFound from "@/pages/NotFoundPage.vue";
 // Admin pages
 const Dashboard = () => import(/* webpackChunkName: "dashboard" */"@/pages/Dashboard.vue");
 const Profile = () => import(/* webpackChunkName: "common" */ "@/pages/Profile.vue");
+const RideHistory = () => import(/* webpackChunkName: "common" */ "@/pages/RideHistory.vue");
 const Notifications = () => import(/* webpackChunkName: "common" */"@/pages/Notifications.vue");
 const Icons = () => import(/* webpackChunkName: "common" */ "@/pages/Icons.vue");
 const Maps = () => import(/* webpackChunkName: "common" */ "@/pages/Maps.vue");
@@ -26,6 +27,11 @@ const routes = [
         path: "profile",
         name: "profile",
         component: Profile
+      },
+      {
+        path: "ride_history",
+        name: "ride_history",
+        component: RideHistory
       },
       {
         path: "notifications",

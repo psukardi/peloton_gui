@@ -3,6 +3,7 @@ import BaseInput from "./Inputs/BaseInput.vue";
 import BaseCheckbox from "./BaseCheckbox.vue";
 import BaseRadio from "./BaseRadio.vue";
 import BaseDropdown from "./BaseDropdown.vue";
+import RideTable from "./RideTable.vue";
 import BaseTable from "./BaseTable.vue";
 import BaseButton from "./BaseButton";
 import BaseAlert from "./BaseAlert";
@@ -27,5 +28,6 @@ export {
   BaseButton,
   BaseAlert,
   SidebarPlugin,
-  BaseNav
+  BaseNav,
+  RideTable
 };

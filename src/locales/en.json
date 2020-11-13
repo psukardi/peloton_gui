@@ -12,6 +12,12 @@
       "Speed",
       "Miles Per Ride"
     ],
+    "graphCategories": [
+      "Output",
+      "Cadence",
+      "Resistance",
+      "Speed"
+    ],
     "usersTable": {
       "title": "Simple Table",
       "columns": [
