@@ -4,18 +4,18 @@
       <div class="col-md-9 ml-auto">
          <a href="https://www.buymeacoffee.com/psukardi">
             <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"/>
-          </a>
-                    <button class="btn btn-facebook">
-            <ShareNetwork
-              network="facebook"
-              url="http://www.pelodashboard.com"
-              title="Say hi to PeloDashboard the home for all your Bike Data"
-              description="Come visit PeloDashboard to make the most of each ride."
-              hashtags="peloton"
-            >
-              Share on Facebook
-            </ShareNetwork>
-          </button>
+          </a> &nbsp;&nbsp;&nbsp;&nbsp;
+             <base-button>
+              <ShareNetwork
+                network="facebook"
+                url="http://www.pelodashboard.com"
+                title="Say hi to PeloDashboard the home for all your Bike Data"
+                description="Come visit PeloDashboard to make the most of each ride."
+                hashtags="peloton"
+              >
+                Share on Facebook
+              </ShareNetwork>
+            </base-button>
       </div>
       <div class="col-md-3 ml-auto">
           <a href="http://pelodashboard.com:5000/login">
