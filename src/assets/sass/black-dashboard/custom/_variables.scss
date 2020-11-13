@@ -107,7 +107,7 @@ $info:          #1d8cf8 !default;
 $warning:       #ff8d72 !default;
 $danger:        #fd5d93 !default;
 $black:         #222a42 !default;
-$vue:           #42b883 !default;
+$vue:           #8B938A !default;
 
 // gradient
 $default-states:       #263148 !default;
@@ -117,10 +117,10 @@ $info-states:          #3358f4 !default;
 $warning-states:       #ff6491 !default;
 $danger-states:        #ec250d !default;
 $black-states:         #1d253b !default;
-$vue-states:           #389466 !default;
+$vue-states:           #8B938A !default;
 
-$background-black:           #1e1e2f !default;
-$background-states-black:    #1e1e24 !default;
+$background-black:           #2B4162 !default;
+$background-states-black:    #2B4162 !default;
 
 // opacity
 $default-opacity:      rgba(182, 182, 182, .6) !default;
@@ -895,11 +895,11 @@ $card-spacer-y:                     1.25rem !default;
 $card-spacer-x:                     1.5rem !default;
 $card-border-width:                 $border-width !default;
 $card-border-radius:                $border-radius-sm !default;
-$card-border-color:                 rgba($black, .05);
+$card-border-color:                 #000000;
 $card-inner-border-radius:          calc(#{$card-border-radius} - #{$card-border-width});
 $card-cap-bg:                       $gray-100 !default;
 $card-bg:                           $white !default;
-$card-black-background:             #27293d !default;
+$card-black-background:             #2B4162 !default;
 $card-img-overlay-padding:          1.25rem !default;
 
 //$card-group-margin:                 ($grid-gutter-width / 2);

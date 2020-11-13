@@ -1,53 +1,55 @@
 <template>
   <div>
-    <div>
-      <h4>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ total_users }} Users have gone on over
-        {{ total_rides }} rides going over {{ total_miles }} miles.
-      </h4>
-      <br />
-      <p>
-        Welcome to your Peloton Dashboard. Your home for analyzing all of your
-        Peloton Bike Results. The charts below will help you on your journey to
-        ensure you make progress day-over-day and week-over-week.
-        <br />
-        If at any time find yourself unsure of how to use the site, please click
-        <a href="https://www.youtube.com/watch?v=KlZPHn9WCUo&feature=youtu.be"
-          >Here</a
-        >
-        <br /><br />
-        Finally, if you've found this service useful, I would love if you could
-        buy me a coffee! Or visit one of our sponsors.
-      </p>
-      <a href="http://pelodashboard.com:5000/login">
-        <base-button type="primary" id="pull">Login</base-button>
-        &nbsp;&nbsp;&nbsp; </a
-      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="row">
+      <div class="col-md-9 ml-auto">
+         <a href="https://www.buymeacoffee.com/psukardi">
+            <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"/>
+          </a>
+                    <button class="btn btn-facebook">
+            <ShareNetwork
+              network="facebook"
+              url="http://www.pelodashboard.com"
+              title="Say hi to PeloDashboard the home for all your Bike Data"
+              description="Come visit PeloDashboard to make the most of each ride."
+              hashtags="peloton"
+            >
+              Share on Facebook
+            </ShareNetwork>
+          </button>
+      </div>
+      <div class="col-md-3 ml-auto">
+          <a href="http://pelodashboard.com:5000/login">
+            <base-button type="primary" id="pull">Login</base-button>
+            </a>
       <a href="http://pelodashboard.com:5000/pull_user_data">
         <base-button type="primary" id="pull">Get Your Data</base-button>
       </a>
-      &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="https://www.buymeacoffee.com/psukardi"
-        ><img
-          src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"
-      /></a>
-      <base-button>
-        <ShareNetwork
-          network="facebook"
-          url="http://www.pelodashboard.com"
-          title="Say hi to PeloDashboard the home for all your Bike Data"
-          description="Come visit PeloDashboard to make the most of each ride."
-          hashtags="peloton"
-        >
-          Share on Facebook
-        </ShareNetwork>
-      </base-button>
-    </div>
-    <div class="row">
-      <div class="col-12">
-
       </div>
     </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <h4> {{ total_users }} Users have gone on over {{ total_rides }} rides going over {{ total_miles }} miles.</h4>
+          <p>
+            Welcome to PeloDashboard.  Your home for analyzing all of your
+            Peloton Bike Ride Results.  The charts below will help guide you 
+            on your journey to make sure your progress continues day-over-day 
+            and week-over-week</p>
+        </div>
+        <div class="col-sm-6 ml-auto">
+          <h4>Using the Site</h4>
+          <p>
+            To make the best of your time with PeloDashboard press the login 
+            button to authenticate with Peloton.  After returning to this screen,
+            press the "Get Your Data" button.  After a few minutes the page 
+            will refresh and you'll have access to all of your rides.  To look
+            at an individual ride, navigate to the "Ride History" tab.</p>
+        </div>
+      </div>
+    </div>
+
+
+
     <div class="row">
       <div class="col-12">
         <card type="chart">
@@ -133,8 +135,9 @@
           </div>
         </card>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-6">
             <div id="adsgoeshere" v-html="awsContent"></div>
+            
         </div>
       </div>
       <div class="col-md-12">
