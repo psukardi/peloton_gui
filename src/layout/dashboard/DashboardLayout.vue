@@ -5,6 +5,7 @@
           <sidebar-link to="/dashboard" :name="$t('sidebar.dashboard')" icon="tim-icons icon-bullet-list-67"/>
           <sidebar-link to="/profile" :name="$t('sidebar.userProfile')" icon="tim-icons icon-trophy"/>
           <sidebar-link to="/ride_history" name="Ride History" icon="tim-icons icon-chart-bar-32"/>
+          
       </template>
     </side-bar>
     <!-- <side-bar>
@@ -35,12 +36,14 @@ import TopNavbar from "./TopNavbar.vue";
 import ContentFooter from "./ContentFooter.vue";
 import DashboardContent from "./Content.vue";
 import MobileMenu from "./MobileMenu";
+import SideBar from '../../components/SidebarPlugin/SideBar.vue';
 export default {
   components: {
     TopNavbar,
     ContentFooter,
     DashboardContent,
-    MobileMenu
+    MobileMenu,
+    SideBar
   },
   methods: {
     toggleSidebar() {

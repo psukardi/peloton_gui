@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-md-9 ml-auto">
+      <div class="col-md-7 ml-auto">
          <a href="https://www.buymeacoffee.com/psukardi">
             <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=🍕&slug=psukardi&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"/>
           </a> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -17,12 +17,15 @@
               </ShareNetwork>
             </base-button>
       </div>
-      <div class="col-md-3 ml-auto">
+      <div class="col-md-5 ml-auto">
           <a href="http://pelodashboard.com:5000/login">
             <base-button type="primary" id="pull">Login</base-button>
             </a>
       <a href="http://pelodashboard.com:5000/pull_user_data">
         <base-button type="primary" id="pull">Get Your Data</base-button>
+      </a>
+      <a href="mailto:admin@pelodashboard.com">
+        <base-button type="primary" id="pull">Contact Us</base-button>
       </a>
       </div>
     </div>
