@@ -47,8 +47,12 @@ export default {
       var user_id = getCookieValue("USER_ID");
       var rollup_url =
         "http://pelodashboard.com:5000/get_user_rollup/" + user_id;
+      // var achievements_url =
+      //   "http://pelodashboard.com:5000/achievements/" + user_id;
 
-      const [rollup] = await Promise.all([axios.get(rollup_url)]);
+      const [rollup] = await Promise.all([
+        axios.get(rollup_url),
+      ]);
 
       user.totalAchievements = rollup.data.total_achievements;
       user.totalRides = rollup.data.total_rides;

@@ -84,8 +84,12 @@
         </tr>
       </tbody>
       <p>
-        <button @click="prevPage">Previous</button>
-        <button @click="nextPage">Next</button>
+        <button @click="prevPage" type="button" class="btn btn-default">Previous
+           <i data-v-01e1f50f="" class="tim-icons icon-minimal-left"></i>
+        </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button @click="nextPage" type="button" class="btn btn-default">Next
+           <i data-v-01e1f50f="" class="tim-icons icon-minimal-right"></i>
+        </button>
       </p>
     </table>
   </div>
