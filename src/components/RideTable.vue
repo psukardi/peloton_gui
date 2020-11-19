@@ -199,7 +199,6 @@ export default {
   mounted() {
     this.initBigChart(0);
     this.backup_data = this.data;
-    alert('mounted');
   },
   computed: {
     tableClass() {
