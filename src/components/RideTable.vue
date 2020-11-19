@@ -84,6 +84,8 @@
         </tr>
       </tbody>
       <p>
+        <button @click="reset" type="button" class="btn btn-default">Reset</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button @click="prevPage" type="button" class="btn btn-default">Previous
            <i data-v-01e1f50f="" class="tim-icons icon-minimal-left"></i>
         </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -108,16 +110,19 @@ export default {
     BarChart
   },
   name: "ride-table",
+  filter: null,
   data() {
     return {
       showModal: false,
       modalText: "",
       pageSize: 5,
       currentPage: 1,
+      backup_data: [],
       currentSort: "name",
       currentSortDir: "dsec",
       index: 0,
       workout_hash: 0,
+      filter: null,
 
       bigLineChart: {
         allData: [],
@@ -193,6 +198,8 @@ export default {
   },
   mounted() {
     this.initBigChart(0);
+    this.backup_data = this.data;
+    alert('mounted');
   },
   computed: {
     tableClass() {
@@ -222,6 +229,45 @@ export default {
         this.currentSortDir = this.currentSortDir === "asc" ? "desc" : "asc";
       }
       this.currentSort = s;
+    },
+    reset: function(){
+      this.isSearchDisabled = false;
+      this.data = this.backup_data;
+      this.currentPage = 1;
+    },
+    search: async function(ride_id, getCookieValue, trim){
+      if (this.isSearchDisabled){
+        return;
+      }
+      var userID = getCookieValue("USER_ID");
+      try {
+        var downselect_url = "http://pelodashboard.com:5000/ride_graph/history/" + userID + '/' + ride_id;
+        const [hashesToKeep] = await Promise.all([
+          axios.get(downselect_url)
+        ]);
+
+        var hashes = hashesToKeep.data
+        trim(hashes);
+        this.isSearchDisabled = true;
+      } catch(err){
+        console.log(err);
+      }
+    },
+    getCookieValue(a) {
+      var b = document.cookie.match("(^|;)\\s*" + a + "\\s*=\\s*([^;]+)");
+      return b ? b.pop() : "f9982d7545db41be91e2fff28000547d";
+    },
+    trim(hashes) {
+      this.backup_data = this.data
+      var new_records = []
+      for(var key in this.data){
+        if(hashes.includes(this.data[key].workout_hash)){
+          new_records.push(this.data[key]);
+        }
+      }
+
+      this.data = new_records;
+      this.currentPage = 1;
     },
     prevPage: function() {
       if (this.currentPage > 1) this.currentPage--;
@@ -305,6 +351,7 @@ export default {
     },
     getRideChart(data, item, index) {
       this.workout_hash = data[item]["workout_hash"];
+      this.search(item, this.getCookieValue, this.trim);
       this.initBigChart(this.index, data[item]["workout_hash"]);
     }
   }
