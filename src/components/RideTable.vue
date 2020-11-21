@@ -52,6 +52,8 @@
         </card>
       </div>
     </div>
+    
+
     <table class="table tablesorter" :class="tableClass">
       <thead :class="theadClasses">
         <tr>
@@ -83,16 +85,19 @@
           </slot>
         </tr>
       </tbody>
-      <p>
-        <button @click="reset" type="button" class="btn btn-default">Reset</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button @click="prevPage" type="button" class="btn btn-default">Previous
-           <i data-v-01e1f50f="" class="tim-icons icon-minimal-left"></i>
-        </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button @click="nextPage" type="button" class="btn btn-default">Next
-           <i data-v-01e1f50f="" class="tim-icons icon-minimal-right"></i>
-        </button>
-      </p>
+      <button @click="reset" type="button" class="btn btn-default">
+        Reset
+      </button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button @click="prevPage" type="button" class="btn btn-default">
+        Previous
+        <i data-v-01e1f50f="" class="tim-icons icon-minimal-left"></i>
+      </button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button @click="nextPage" type="button" class="btn btn-default">
+        Next
+        <i data-v-01e1f50f="" class="tim-icons icon-minimal-right"></i>
+      </button>
     </table>
   </div>
 </template>
@@ -101,13 +106,15 @@ import axios from "axios";
 import NotificationTemplate from "../pages/Notifications/NotificationTemplate";
 import LineChart from "@/components/Charts/LineChart";
 import BarChart from "@/components/Charts/BarChart";
+import BaseDropdown from "@/components/BaseDropdown";
 import config from "@/config";
 import * as chartConfigs from "@/components/Charts/config";
 
 export default {
   components: {
     LineChart,
-    BarChart
+    BarChart,
+    BaseDropdown
   },
   name: "ride-table",
   filter: null,
@@ -229,26 +236,28 @@ export default {
       }
       this.currentSort = s;
     },
-    reset: function(){
+    reset: function() {
       this.isSearchDisabled = false;
       this.data = this.backup_data;
       this.currentPage = 1;
     },
-    search: async function(ride_id, getCookieValue, trim){
-      if (this.isSearchDisabled){
+    search: async function(ride_id, getCookieValue, trim) {
+      if (this.isSearchDisabled) {
         return;
       }
       var userID = getCookieValue("USER_ID");
       try {
-        var downselect_url = "http://pelodashboard.com:5000/ride_graph/history/" + userID + '/' + ride_id;
-        const [hashesToKeep] = await Promise.all([
-          axios.get(downselect_url)
-        ]);
+        var downselect_url =
+          "http://pelodashboard.com:5000/ride_graph/history/" +
+          userID +
+          "/" +
+          ride_id;
+        const [hashesToKeep] = await Promise.all([axios.get(downselect_url)]);
 
-        var hashes = hashesToKeep.data
+        var hashes = hashesToKeep.data;
         trim(hashes);
         this.isSearchDisabled = true;
-      } catch(err){
+      } catch (err) {
         console.log(err);
       }
     },
@@ -257,10 +266,10 @@ export default {
       return b ? b.pop() : "f9982d7545db41be91e2fff28000547d";
     },
     trim(hashes) {
-      this.backup_data = this.data
-      var new_records = []
-      for(var key in this.data){
-        if(hashes.includes(this.data[key].workout_hash)){
+      this.backup_data = this.data;
+      var new_records = [];
+      for (var key in this.data) {
+        if (hashes.includes(this.data[key].workout_hash)) {
           new_records.push(this.data[key]);
         }
       }

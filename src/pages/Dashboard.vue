@@ -19,7 +19,7 @@
       </div>
       <div class="col-md-5 ml-auto">
           <a href="http://pelodashboard.com:5000/login">
-            <base-button type="primary" id="pull">Login</base-button>
+            <base-button @click="loading()" type="primary" id="pull">Login</base-button>
             </a>
       <a href="http://pelodashboard.com:5000/pull_user_data">
         <base-button type="primary" id="pull">Get Your Data</base-button>
@@ -338,6 +338,9 @@ export default {
       }
 
       asyncFunc(this.$refs, this.greenLineChart, this.getCookieValue);
+    },
+    loading() {
+      alert("If you have a large number of rides, the import will take some time");
     },
     initBigChart(index) {
       async function asyncFunc(refs, bigLineChart, index, getCookieValue) {

@@ -2,6 +2,10 @@ import DashboardLayout from "@/layout/dashboard/DashboardLayout.vue";
 // GeneralViews
 import NotFound from "@/pages/NotFoundPage.vue";
 
+// Calendar
+const Calendar = () =>
+  import(/* webpackChunkName: "extra" */ '@/pages/Calendar/CalendarRoute.vue');
+
 // Admin pages
 const Dashboard = () => import(/* webpackChunkName: "dashboard" */"@/pages/Dashboard.vue");
 const Profile = () => import(/* webpackChunkName: "common" */ "@/pages/Profile.vue");
@@ -32,6 +36,11 @@ const routes = [
         path: "ride_history",
         name: "ride_history",
         component: RideHistory
+      },
+      {
+        path: 'calendar',
+        name: 'Calendar',
+        components: { default: Calendar }
       },
       {
         path: "notifications",

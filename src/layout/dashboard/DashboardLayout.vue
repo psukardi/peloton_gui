@@ -2,10 +2,10 @@
   <div class="wrapper">
     <side-bar background-color="vue">
       <template slot="links">
-          <sidebar-link to="/dashboard" :name="$t('sidebar.dashboard')" icon="tim-icons icon-bullet-list-67"/>
+          <sidebar-link to="/dashboard" name="Overall Data (Home)" icon="tim-icons icon-bullet-list-67"/>
           <sidebar-link to="/profile" :name="$t('sidebar.userProfile')" icon="tim-icons icon-trophy"/>
-          <sidebar-link to="/ride_history" name="Ride History" icon="tim-icons icon-chart-bar-32"/>
-          
+          <sidebar-link to="/ride_history" name="Previous Ride Details" icon="tim-icons icon-chart-bar-32"/>
+          <sidebar-link to="/calendar" name="Calendar" icon="tim-icons icon-calendar-60"/>
       </template>
     </side-bar>
     <!-- <side-bar>
