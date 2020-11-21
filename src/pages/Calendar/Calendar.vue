@@ -68,9 +68,11 @@ export default {
         var __event__ = dictionary[key];
         var date  = __event__['date'];
         var title = __event__['name'];
+        var duration = __event__['length'];
         calendar.push({
           title: title,
-          date: date
+          date: date,
+          duration: duration
         });
       });
 
