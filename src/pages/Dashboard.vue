@@ -46,7 +46,7 @@
             button to authenticate with Peloton.  After returning to this screen,
             click Get Your Data.  After a few minutes the page 
             will refresh and you'll have access to all of your rides.  To look
-            at an individual ride, navigate to the "Ride History" tab.</p>
+            at an individual ride, navigate to the "Previous Ride Details" tab.</p>
         </div>
       </div>
     </div>
