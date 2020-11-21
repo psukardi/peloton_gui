@@ -52,7 +52,6 @@
         </card>
       </div>
     </div>
-    
 
     <table class="table tablesorter" :class="tableClass">
       <thead :class="theadClasses">
@@ -288,6 +287,13 @@ export default {
       return item[column.toLowerCase()] !== "undefined";
     },
     itemValue(item, column) {
+      if (column == "Name") {
+        if (this.data[item]["multiple_rides"] == true) {
+          return this.data[item][column.toLowerCase()] + "*";
+        }else {
+          return this.data[item][column.toLowerCase()];
+        }
+      }
       return this.data[item][column.toLowerCase()];
     },
     dismiss() {

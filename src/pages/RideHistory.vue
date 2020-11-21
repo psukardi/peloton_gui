@@ -5,7 +5,8 @@
         <card class="card">
           <h4 slot="header" class="card-title">
             Populating a ride chart will get all the metrics for an individual ride.  If you have taken the same 
-            ride more than once, clicking (Populate Ride Chart) will allow you to see only those rides
+            ride more than once, clicking (Populate Ride Chart) will allow you to see only those rides.
+            Rides with an '*' designate a ride you've taken multiple times.
           </h4>
           <div class="table-responsive">
             <ride-history-table ref="ride-history"></ride-history-table>
