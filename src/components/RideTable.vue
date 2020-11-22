@@ -52,7 +52,17 @@
         </card>
       </div>
     </div>
-
+    <div>
+      <base-dropdown title-classes="btn btn-info" title="Filter By Instructor">
+        <!--     <option v-for="jobTitle in jobTitles" :value="jobTitle.id" :key="jobTitle.id">{{ jobTitle.name }}</option> -->
+        <a @click="instructorFilter(instructor.name)"
+          v-for="instructor in instructors"
+          :key="instructor.id"
+          class="dropdown-item"
+          >{{instructor.name}}</a
+        >
+      </base-dropdown>
+    </div>
     <table class="table tablesorter" :class="tableClass">
       <thead :class="theadClasses">
         <tr>
@@ -116,6 +126,7 @@ export default {
     BaseDropdown
   },
   name: "ride-table",
+  instrutors: [],
   filter: null,
   data() {
     return {
@@ -129,7 +140,6 @@ export default {
       index: 0,
       workout_hash: 0,
       filter: null,
-
       bigLineChart: {
         allData: [],
         activeIndex: 0,
@@ -200,11 +210,17 @@ export default {
       type: String,
       default: "",
       description: "<tbody> css classes"
+    },
+    instructors: {
+      type: Object,
+      default: () => [],
+      description: "Filter By Instructor"
     }
   },
   mounted() {
     this.initBigChart(0);
     this.backup_data = this.data;
+    this.getInstructors(this.instructors);
   },
   computed: {
     tableClass() {
@@ -276,6 +292,18 @@ export default {
       this.data = new_records;
       this.currentPage = 1;
     },
+    instructorFilter: function(name){
+      this.backup_data = this.data;
+      var new_records = [];
+      for (var key in this.data){
+        let __instructor__ = this.data[key]['instructor']
+        if (name == __instructor__){
+          new_records.push(this.data[key]);
+        }
+      }
+      this.data = new_records;
+      this.currentPage = 1;
+    },
     prevPage: function() {
       if (this.currentPage > 1) this.currentPage--;
     },
@@ -290,7 +318,7 @@ export default {
       if (column == "Name") {
         if (this.data[item]["multiple_rides"] == true) {
           return this.data[item][column.toLowerCase()] + "*";
-        }else {
+        } else {
           return this.data[item][column.toLowerCase()];
         }
       }
@@ -298,6 +326,33 @@ export default {
     },
     dismiss() {
       this.showModal = false;
+    },
+    getCookieValue(a) {
+      var b = document.cookie.match("(^|;)\\s*" + a + "\\s*=\\s*([^;]+)");
+      return b ? b.pop() : "f9982d7545db41be91e2fff28000547d";
+    },
+    getInstructors: async function(instructors) {
+      var user_id = this.getCookieValue("USER_ID");
+      var course_url = "http://pelodashboard.com:5000/course_data/" + user_id;
+      const [firstResponse] = await Promise.all([axios.get(course_url)]);
+
+      // Let's get that unqiue set of instructors for filtering
+      let instructor_set = new Set();
+
+      var course_dict = firstResponse.data;
+      var keys = Object.keys(course_dict);
+      keys.forEach(e => {
+        instructor_set.add(course_dict[e]["instructor"]);
+      });
+
+      instructor_set = Array.from(instructor_set);
+      instructor_set.forEach( i=> {
+        var __instructor__ = {
+          id: i,
+          name:i
+        };
+        instructors.push(__instructor__);
+      });
     },
     initBigChart(index, item) {
       this.index = index;
