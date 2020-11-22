@@ -293,6 +293,7 @@ export default {
       this.currentPage = 1;
     },
     instructorFilter: function(name){
+      this.reset();
       this.backup_data = this.data;
       var new_records = [];
       for (var key in this.data){
