@@ -52,16 +52,33 @@
         </card>
       </div>
     </div>
-    <div>
-      <base-dropdown title-classes="btn btn-info" title="Filter By Instructor">
-        <!--     <option v-for="jobTitle in jobTitles" :value="jobTitle.id" :key="jobTitle.id">{{ jobTitle.name }}</option> -->
-        <a @click="instructorFilter(instructor.name)"
-          v-for="instructor in instructors"
-          :key="instructor.id"
-          class="dropdown-item"
-          >{{instructor.name}}</a
+    <div class="row">
+      <div class="col-sm-6 col-lg-2">
+        <base-dropdown
+          title-classes="btn btn-info"
+          title="Filter By Instructor"
         >
-      </base-dropdown>
+          <!--     <option v-for="jobTitle in jobTitles" :value="jobTitle.id" :key="jobTitle.id">{{ jobTitle.name }}</option> -->
+          <a
+            @click="instructorFilter(instructor.name)"
+            v-for="instructor in instructors"
+            :key="instructor.id"
+            class="dropdown-item"
+            >{{ instructor.name }}</a
+          >
+        </base-dropdown>
+      </div>
+      <div class="col-sm-6 col-lg-1">
+        <base-dropdown title-classes="btn btn-info" title="Filter By Length">
+          <a
+            @click="lengthFilter(length.name)"
+            v-for="length in course_length"
+            :key="length.id"
+            class="dropdown-item"
+            >{{ length.name }}</a
+          >
+        </base-dropdown>
+      </div>
     </div>
     <table class="table tablesorter" :class="tableClass">
       <thead :class="theadClasses">
@@ -215,12 +232,17 @@ export default {
       type: Object,
       default: () => [],
       description: "Filter By Instructor"
+    },
+    course_length: {
+      type: Object,
+      default: () => [],
+      description: "Filter By Class Length"
     }
   },
   mounted() {
     this.initBigChart(0);
     this.backup_data = this.data;
-    this.getInstructors(this.instructors);
+    this.getInstructors(this.instructors, this.course_length);
   },
   computed: {
     tableClass() {
@@ -292,13 +314,26 @@ export default {
       this.data = new_records;
       this.currentPage = 1;
     },
-    instructorFilter: function(name){
+    instructorFilter: function(name) {
       this.reset();
       this.backup_data = this.data;
       var new_records = [];
-      for (var key in this.data){
-        let __instructor__ = this.data[key]['instructor']
-        if (name == __instructor__){
+      for (var key in this.data) {
+        let __instructor__ = this.data[key]["instructor"];
+        if (name == __instructor__) {
+          new_records.push(this.data[key]);
+        }
+      }
+      this.data = new_records;
+      this.currentPage = 1;
+    },
+    lengthFilter: function(length) {
+      this.reset();
+      this.backup_data = this.data;
+      var new_records = [];
+      for (var key in this.data) {
+        let __length__ = this.data[key]["length"];
+        if (length == __length__) {
           new_records.push(this.data[key]);
         }
       }
@@ -332,27 +367,39 @@ export default {
       var b = document.cookie.match("(^|;)\\s*" + a + "\\s*=\\s*([^;]+)");
       return b ? b.pop() : "f9982d7545db41be91e2fff28000547d";
     },
-    getInstructors: async function(instructors) {
+    getInstructors: async function(instructors, course_length) {
       var user_id = this.getCookieValue("USER_ID");
       var course_url = "http://pelodashboard.com:5000/course_data/" + user_id;
       const [firstResponse] = await Promise.all([axios.get(course_url)]);
 
       // Let's get that unqiue set of instructors for filtering
       let instructor_set = new Set();
+      let length_set = new Set();
 
       var course_dict = firstResponse.data;
       var keys = Object.keys(course_dict);
       keys.forEach(e => {
+        length_set.add(course_dict[e]["length"]);
         instructor_set.add(course_dict[e]["instructor"]);
       });
 
       instructor_set = Array.from(instructor_set);
-      instructor_set.forEach( i=> {
+      length_set = Array.from(length_set);
+
+      instructor_set.forEach(i => {
         var __instructor__ = {
           id: i,
-          name:i
+          name: i
         };
         instructors.push(__instructor__);
+      });
+
+      length_set.forEach(i => {
+        var __length__ = {
+          id: i,
+          name: i
+        };
+        course_length.push(__length__);
       });
     },
     initBigChart(index, item) {
