@@ -37,7 +37,7 @@
             Welcome to PeloDashboard.  Your home for analyzing all of your
             Peloton Bike Ride Results.  The charts below will help guide you 
             on your journey to make sure your progress continues day-over-day 
-            and week-over-week</p>
+            and week-over-week.  If you do not see your data after an import, please login again.</p>
         </div>
         <div class="col-sm-6 ml-auto">
           <h4>Using the Site</h4>
