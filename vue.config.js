@@ -7,11 +7,15 @@ module.exports = {
     // This should fix the host issue
     disableHostCheck: true,
     host: '0.0.0.0',
-    port: 443,
-    https: {
-      key: fs.readFileSync('./example_com.key'),
-      cert: fs.readFileSync('./pelodashboard_com.crt')
-    }
+    https: true,
+    key: fs.readFileSync('./example_com.key'),
+    cert: fs.readFileSync('./pelodashboard_com.crt'),
+    ca: fs.readFileSync('./csr.pem')
+    // port: 443,
+    // https: {
+    //   key: fs.readFileSync('./example_com.key'),
+    //   cert: fs.readFileSync('./pelodashboard_com.crt')
+    // }
   },
   configureWebpack: {
     // Set up all the aliases we use in our app.
