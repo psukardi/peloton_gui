@@ -10,7 +10,7 @@ module.exports = {
     https: true,
     key: fs.readFileSync('./example_com.key'),
     cert: fs.readFileSync('./pelodashboard_com.crt'),
-    ca: fs.readFileSync('./csr.pem')
+    // ca: fs.readFileSync('./csr.pem')
     // port: 443,
     // https: {
     //   key: fs.readFileSync('./example_com.key'),
