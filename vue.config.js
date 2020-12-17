@@ -9,9 +9,8 @@ module.exports = {
     host: '0.0.0.0',
     port: 443,
     https: {
-      key: fs.readFileSync('./example_com.key'),
-      cert: fs.readFileSync('./pelodashboard_com.crt'),
-      ca: fs.readFileSync('./csr.pem')
+      key: fs.readFileSync('./pelodashboard_com.key'),
+      cert: fs.readFileSync('./pelodashboard_com.crt')
     }
   },
   configureWebpack: {
