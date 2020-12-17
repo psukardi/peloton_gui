@@ -138,7 +138,7 @@ export default {
       this.showModal = false;
     },
     getMusic(data, item, index) {
-      var music_req_url = "http://pelodashboard.com:5000/music_by_time/" + item;
+      var music_req_url = "https://pelodashboard.com:5000/music_by_time/" + item;
 
       async function asyncFunc(parent) {
         const [music] = await Promise.all([axios.get(music_req_url)]);

@@ -26,7 +26,7 @@
       // once this is loaded we can pump in the course data
       async function asyncFunc(table, getCookieValue) {
           var user_id = getCookieValue("USER_ID");
-          var course_url = 'http://pelodashboard.com:5000/course_data/' + user_id
+          var course_url = 'https://pelodashboard.com:5000/course_data/' + user_id
           const [firstResponse] = await Promise.all([
             axios.get(course_url)
           ]);

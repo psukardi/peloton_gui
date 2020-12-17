@@ -18,10 +18,10 @@
             </base-button>
       </div>
       <div class="col-md-5 ml-auto">
-          <a href="http://pelodashboard.com:5000/login">
+          <a href="https://pelodashboard.com:5000/login">
             <base-button @click="loading()" type="primary" id="pull">Login</base-button>
             </a>
-      <a href="http://pelodashboard.com:5000/pull_user_data">
+      <a href="https://pelodashboard.com:5000/pull_user_data">
         <base-button type="primary" id="pull">Get Your Data</base-button>
       </a>
       <a href="mailto:admin@pelodashboard.com">
@@ -287,7 +287,7 @@ export default {
     populateTotalUsers() {
       var self = this;
       axios
-        .get("http://pelodashboard.com:5000/totals")
+        .get("https://pelodashboard.com:5000/totals")
         .then(function (response) {
           console.log(response);
           self.total_users = response.data.total_users;
@@ -305,9 +305,9 @@ export default {
     initHeartChart() {
       async function asyncFunc(refs, greenLineChart, getCookieValue) {
         var user_id = getCookieValue("USER_ID");
-        var label_url = "http://pelodashboard.com:5000/get_labels/" + user_id;
+        var label_url = "https://pelodashboard.com:5000/get_labels/" + user_id;
         var heart_url =
-          "http://pelodashboard.com:5000/get_heart_rate/" + user_id;
+          "https://pelodashboard.com:5000/get_heart_rate/" + user_id;
         const [firstResponse, secondResponse] = await Promise.all([
           axios.get(label_url),
           axios.get(heart_url),
@@ -345,8 +345,8 @@ export default {
     initBigChart(index) {
       async function asyncFunc(refs, bigLineChart, index, getCookieValue) {
         var user_id = getCookieValue("USER_ID");
-        var label_url = "http://pelodashboard.com:5000/get_labels/" + user_id;
-        var heart_url = "http://pelodashboard.com:5000/get_charts/" + user_id;
+        var label_url = "https://pelodashboard.com:5000/get_labels/" + user_id;
+        var heart_url = "https://pelodashboard.com:5000/get_charts/" + user_id;
         const [firstResponse, secondResponse] = await Promise.all([
           axios.get(label_url),
           axios.get(heart_url),

@@ -229,12 +229,12 @@ export default {
       description: "<tbody> css classes"
     },
     instructors: {
-      type: Object,
+      type: Array,
       default: () => [],
       description: "Filter By Instructor"
     },
     course_length: {
-      type: Object,
+      type: Array,
       default: () => [],
       description: "Filter By Class Length"
     }
@@ -285,7 +285,7 @@ export default {
       var userID = getCookieValue("USER_ID");
       try {
         var downselect_url =
-          "http://pelodashboard.com:5000/ride_graph/history/" +
+          "https://pelodashboard.com:5000/ride_graph/history/" +
           userID +
           "/" +
           ride_id;
@@ -369,7 +369,7 @@ export default {
     },
     getInstructors: async function(instructors, course_length) {
       var user_id = this.getCookieValue("USER_ID");
-      var course_url = "http://pelodashboard.com:5000/course_data/" + user_id;
+      var course_url = "https://pelodashboard.com:5000/course_data/" + user_id;
       const [firstResponse] = await Promise.all([axios.get(course_url)]);
 
       // Let's get that unqiue set of instructors for filtering
@@ -407,7 +407,7 @@ export default {
       async function asyncFunc(refs, bigLineChart, index, workout_hash) {
         try {
           var workout_hash_url =
-            "http://pelodashboard.com:5000/ride_graph/" + workout_hash;
+            "https://pelodashboard.com:5000/ride_graph/" + workout_hash;
           const [chartResults] = await Promise.all([
             axios.get(workout_hash_url)
           ]);

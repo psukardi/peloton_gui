@@ -70,7 +70,7 @@ const routes = [
     ]
   },
   { path: '/logout', redirect: to => {
-    window.location.href = 'http://pelodashboard.com:5000/logout';
+    window.location.href = 'https://pelodashboard.com:5000/logout';
 
   }},
   { path: "*", component: NotFound }
