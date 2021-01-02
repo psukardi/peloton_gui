@@ -132,7 +132,14 @@ export default {
       return item[column.toLowerCase()] !== "undefined";
     },
     itemValue(item, column) {
+      if (column == "Miles Ridden") {
+        return this.data[item]["miles_ridden"];
+      }
+      else if (column == "Total Output") {
+        return this.data[item]['total_output'];
+      } else {
       return this.data[item][column.toLowerCase()];
+      }
     },
     dismiss() {
       this.showModal = false;

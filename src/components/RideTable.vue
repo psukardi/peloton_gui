@@ -358,7 +358,14 @@ export default {
           return this.data[item][column.toLowerCase()];
         }
       }
+      else if (column == "Miles Ridden") {
+        return this.data[item]["miles_ridden"];
+      }
+      else if (column == "Total Output") {
+        return this.data[item]['total_output'];
+      } else {
       return this.data[item][column.toLowerCase()];
+      }
     },
     dismiss() {
       this.showModal = false;
@@ -371,6 +378,7 @@ export default {
       var user_id = this.getCookieValue("USER_ID");
       var course_url = "https://pelodashboard.com:5000/course_data/" + user_id;
       const [firstResponse] = await Promise.all([axios.get(course_url)]);
+
 
       // Let's get that unqiue set of instructors for filtering
       let instructor_set = new Set();

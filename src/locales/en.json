@@ -24,6 +24,8 @@
         "Name",
         "Difficulty",
         "Length",
+        "Miles Ridden",
+        "Total Output",
         "Instructor",
         "Date"
       ],
